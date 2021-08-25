@@ -23,3 +23,15 @@ exports.add = (req, res) => {
 		}
 	});
 };
+
+exports.delete = (req, res) => {
+	const removePokemon = req.params.id;
+	Pokemon.deleteMany({ no: removePokemon }, (err, data) => {
+		if (err) {
+			console.log(err);
+			res.status(404).send(`err removing all ${removePokemon}`);
+		} else {
+			res.status(200).send(data);
+		}
+	});
+};
