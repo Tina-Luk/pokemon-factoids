@@ -12,6 +12,10 @@ app.get('/pokemon', (req, res) => {
 	controller.getAll(req, res);
 });
 
+app.post('/pokemon', (req, res) => {
+	controller.add(req, res);
+});
+
 app.listen(PORT, () => {
 	console.log(`Web server running on: http://localhost:${PORT}`);
 });
