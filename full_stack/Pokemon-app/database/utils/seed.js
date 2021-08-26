@@ -15,7 +15,7 @@ addTenPokemon();
 const abilities = (arrayAbilities) => {
 	let abilities = '';
 	for (let i = 0; i < arrayAbilities.length; i++) {
-		abilities += arrayAbilities[i].ability.name + ' ,';
+		abilities += arrayAbilities[i].ability.name + ', ';
 	}
 	return abilities;
 };

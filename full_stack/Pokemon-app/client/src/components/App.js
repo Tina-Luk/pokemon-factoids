@@ -31,7 +31,7 @@ function App() {
 	const deletePokemon = () => {
 		let id = pokemons[index].no;
 		axios
-			.delete(`http://localhost:3001/pokemon/${id}`)
+			.delete(`${pokemonUrl}pokemon/${id}`)
 			.then((res) => {
 				console.log(`deleted pokemon # ${id}`);
 				setPokemons(pokemons.splice(id, 1));
@@ -40,6 +40,21 @@ function App() {
 			.catch((err) => {
 				console.log('error deleting pokemon');
 			});
+	};
+
+	const onAddClick = () => {
+		axios
+			.get(`https://pokeapi.co/api/v2/pokemon/1`)
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(err));
+		// axios
+		// 	.post(`${pokemonUrl}pokemon`, add)
+		// 	.then((res) => {
+		// 		console.log(`added pokemon # ${add}`);
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log('error adding pokemon');
+		// 	});
 	};
 
 	const onClick = (direction) => {
@@ -64,7 +79,7 @@ function App() {
 			<div>
 				<p>Enter Pokemon Name or Number: </p>
 				<Input placeholder="bulbasaur" onChange={(e) => setAdd(e.target.value)} />
-				<Button>Add</Button>
+				<Button onClick={onAddClick}>Add</Button>
 			</div>
 			<br />
 			<div>
