@@ -6,22 +6,36 @@ const promises = [];
 
 const addTenPokemon = () => {
 	for (let i = 1; i <= 10; i++) {
-		promises.push(axios.get(`https://pokeapi.glitch.me/v1/pokemon/${i}`));
+		promises.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`));
 	}
 };
 
 addTenPokemon();
 
+const abilities = (arrayAbilities) => {
+	let abilities = '';
+	for (let i = 0; i < arrayAbilities.length; i++) {
+		abilities += arrayAbilities[i].ability.name + ' ,';
+	}
+	return abilities;
+};
+const type = (arrayTypes) => {
+	let type = '';
+	for (let i = 0; i < arrayTypes.length; i++) {
+		type += arrayTypes[i].type.name + ', ';
+	}
+	return type;
+};
+
 Promise.all(promises)
 	.then((res) => {
 		for (let i = 0; i < res.length; i++) {
 			let pokeData = {
-				no: res[i].data[0].number,
-				name: res[i].data[0].name,
-				abilitiesNormal: res[i].data[0].abilities.normal.join(', '),
-				abilitiesHidden: res[i].data[0].abilities.hidden.join(', '),
-				type: res[i].data[0].types.join(', '),
-				image: res[i].data[0].sprite,
+				no: res[i].data.order,
+				name: res[i].data.species.name,
+				abilities: abilities(res[i].data.abilities),
+				type: type(res[i].data.types),
+				image: res[i].data.sprites.front_default,
 			};
 			pokemonSeed.push(pokeData);
 		}
