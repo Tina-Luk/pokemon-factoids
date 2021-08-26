@@ -1,15 +1,15 @@
 import React from 'react';
-import { Message, Image } from 'semantic-ui-react';
+import { Message } from 'semantic-ui-react';
+import './App.css';
 
 function Back({ pokemons, index, onClick }) {
 	let number = pokemons.length > 0 ? pokemons[index].no : '';
 	let name = pokemons.length > 0 ? pokemons[index].name : '';
 	let abilities = pokemons.length > 0 ? pokemons[index].abilities : '';
 	let type = pokemons.length > 0 ? pokemons[index].type : '';
-	let imageUrl = pokemons.length > 0 ? pokemons[index].image : 'empty';
 
 	return (
-		<div>
+		<div className="card">
 			<Message onClick={onClick}>
 				<h4>No.: {number}</h4>
 				<h4>Name: {name.toUpperCase()}</h4>
