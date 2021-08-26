@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const db = require('../database');
 const controller = require('../server/controllers/pokemon.js');
 
@@ -7,6 +8,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.get('/pokemon', (req, res) => {
 	controller.getAll(req, res);
