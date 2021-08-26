@@ -15,14 +15,14 @@ addTenPokemon();
 const abilities = (arrayAbilities) => {
 	let abilities = '';
 	for (let i = 0; i < arrayAbilities.length; i++) {
-		abilities += arrayAbilities[i].ability.name + ', ';
+		i === arrayAbilities.length - 1 ? (abilities += arrayAbilities[i].ability.name) : (abilities += arrayAbilities[i].ability.name + ', ');
 	}
 	return abilities;
 };
 const type = (arrayTypes) => {
 	let type = '';
 	for (let i = 0; i < arrayTypes.length; i++) {
-		type += arrayTypes[i].type.name + ', ';
+		i === arrayTypes.length - 1 ? (type += arrayTypes[i].type.name) : (type += arrayTypes[i].type.name + ', ');
 	}
 	return type;
 };
