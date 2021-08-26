@@ -31,19 +31,21 @@ function App() {
 	};
 
 	const deletePokemon = () => {
-		let id = pokemons[index].no;
-		if (index === pokemons.length - 1) setIndex(pokemons.length - 2);
-		axios
-			.delete(`/pokemon/${id}`)
-			.then((res) => {
-				console.log(`deleted pokemon # ${id}`);
-				let newList = pokemons.slice();
-				newList.splice(index, 1);
-				setPokemons(newList);
-			})
-			.catch((err) => {
-				console.log('error deleting pokemon');
-			});
+		if (window.confirm(`Are you sure you want to remove ${pokemons[index].name} from your deck?`)) {
+			let id = pokemons[index].no;
+			if (index === pokemons.length - 1) setIndex(pokemons.length - 2);
+			axios
+				.delete(`/pokemon/${id}`)
+				.then((res) => {
+					console.log(`deleted pokemon # ${id}`);
+					let newList = pokemons.slice();
+					newList.splice(index, 1);
+					setPokemons(newList);
+				})
+				.catch((err) => {
+					console.log('error deleting pokemon');
+				});
+		}
 	};
 
 	const onAddClick = () => {
