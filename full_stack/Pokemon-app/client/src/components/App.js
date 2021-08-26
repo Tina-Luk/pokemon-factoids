@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
 import axios from 'axios';
 import Front from './Front';
 import Back from './Back';
@@ -10,6 +10,7 @@ const pokemonUrl = 'http://localhost:3001/';
 function App() {
 	const [pokemons, setPokemons] = useState([]);
 	const [index, setIndex] = useState(0);
+	const [add, setAdd] = useState('');
 
 	useEffect(() => {
 		getPokemon();
@@ -56,11 +57,19 @@ function App() {
 			}
 		}
 	};
-
+	console.log(add);
 	return (
 		<div className="App">
-			<Button>Add</Button>
-			<Button onClick={deletePokemon}>Delete</Button>
+			<h1>POKEMON FACTOIDS</h1>
+			<div>
+				<p>Enter Pokemon Name or Number: </p>
+				<Input placeholder="bulbasaur" onChange={(e) => setAdd(e.target.value)} />
+				<Button>Add</Button>
+			</div>
+			<br />
+			<div>
+				<Button onClick={deletePokemon}>Delete Pokemon from Pokedex</Button>
+			</div>
 			<Front pokemons={pokemons} index={index} />
 			<Back pokemons={pokemons} index={index} />
 			<Button onClick={() => onClick('back')}>Back</Button>
