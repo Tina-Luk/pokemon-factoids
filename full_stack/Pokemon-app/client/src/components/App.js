@@ -12,6 +12,7 @@ function App() {
 	const [pokemons, setPokemons] = useState([]);
 	const [index, setIndex] = useState(0);
 	const [add, setAdd] = useState('');
+	const [infoDisplayed, setInfoDisplayed] = useState(false);
 
 	useEffect(() => {
 		getPokemon();
@@ -44,7 +45,6 @@ function App() {
 	};
 
 	const onAddClick = () => {
-		console.log(pokemons);
 		axios
 			.get(`https://pokeapi.co/api/v2/pokemon/${add}`)
 			.then((res) => {
@@ -52,7 +52,10 @@ function App() {
 				setPokemons(pokemons.push(pokemon));
 				axios
 					.post(`${pokemonUrl}pokemon/`, pokemon)
-					.then((res) => console.log('added pokemon successfully'))
+					.then((res) => {
+						console.log('added pokemon successfully');
+						setIndex(pokemons.length - 1);
+					})
 					.catch((err) => console.log(err));
 			})
 			.catch((err) => console.log(err));
@@ -74,6 +77,11 @@ function App() {
 		}
 	};
 
+	const showBack = () => {
+		setInfoDisplayed(!infoDisplayed);
+		console.log(infoDisplayed);
+	};
+
 	return (
 		<div className="App">
 			<h1>POKEMON FACTOIDS</h1>
@@ -86,8 +94,7 @@ function App() {
 			<div>
 				<Button onClick={deletePokemon}>Delete Pokemon from Pokedex</Button>
 			</div>
-			<Front pokemons={pokemons} index={index} />
-			<Back pokemons={pokemons} index={index} />
+			{!infoDisplayed ? <Front pokemons={pokemons} index={index} onClick={showBack} /> : <Back pokemons={pokemons} index={index} onClick={showBack} />}
 			<Button onClick={() => onClick('back')}>Back</Button>
 			<Button onClick={() => onClick('next')}>Next</Button>
 		</div>
