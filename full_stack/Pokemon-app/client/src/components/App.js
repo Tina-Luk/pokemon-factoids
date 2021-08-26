@@ -53,14 +53,18 @@ function App() {
 			.get(`https://pokeapi.co/api/v2/pokemon/${add}`)
 			.then((res) => {
 				let pokemon = pokeObj(res.data);
-				axios
-					.post(`/pokemon/`, pokemon)
-					.then((res) => {
-						console.log('added pokemon successfully');
-						setPokemons(pokemons.push(pokemon));
-						setIndex(pokemons.length - 1);
-					})
-					.catch((err) => console.log(err));
+				if (window.confirm(`Are you sure you want to add ${pokemon.name.toUpperCase()} to your deck?`)) {
+					axios
+						.post(`/pokemon/`, pokemon)
+						.then((res) => {
+							console.log(`added ${add} successfully`);
+							let newList = pokemons.slice();
+							newList.push(pokemon);
+							setPokemons(newList);
+							setIndex(newList.length - 1);
+						})
+						.catch((err) => console.log(err));
+				}
 			})
 			.catch((err) => console.log(err));
 	};
