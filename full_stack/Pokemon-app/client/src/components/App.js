@@ -41,6 +41,7 @@ function App() {
 					let newList = pokemons.slice();
 					newList.splice(index, 1);
 					setPokemons(newList);
+					setInfoDisplayed(false);
 				})
 				.catch((err) => {
 					console.log('error deleting pokemon');
@@ -62,8 +63,12 @@ function App() {
 							newList.push(pokemon);
 							setPokemons(newList);
 							setIndex(newList.length - 1);
+							setInfoDisplayed(false);
 						})
-						.catch((err) => console.log(err));
+						.catch((err) => {
+							console.log(err);
+							window.alert(`Error: ${pokemon.name} may exist already`);
+						});
 				}
 			})
 			.catch((err) => console.log(err));
