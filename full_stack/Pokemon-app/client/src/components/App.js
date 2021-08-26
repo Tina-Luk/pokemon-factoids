@@ -6,7 +6,7 @@ import Front from './Front';
 import Back from './Back';
 import pokeObj from './pokemonAPIhelper';
 
-const pokemonUrl = 'http://localhost:3001/';
+// const pokemonUrl = 'http://localhost:3001/';
 
 function App() {
 	const [pokemons, setPokemons] = useState([]);
@@ -21,7 +21,7 @@ function App() {
 
 	const getPokemon = () => {
 		axios
-			.get(`${pokemonUrl}pokemon`)
+			.get(`/pokemon`)
 			.then((res) => {
 				setPokemons(res.data);
 			})
@@ -32,12 +32,14 @@ function App() {
 
 	const deletePokemon = () => {
 		let id = pokemons[index].no;
+		if (index === pokemons.length - 1) setIndex(pokemons.length - 2);
 		axios
-			.delete(`${pokemonUrl}pokemon/${id}`)
+			.delete(`/pokemon/${id}`)
 			.then((res) => {
 				console.log(`deleted pokemon # ${id}`);
-				setPokemons(pokemons.splice(id, 1));
-				// setIndex(index - 1);
+				let newList = pokemons.slice();
+				newList.splice(index, 1);
+				setPokemons(newList);
 			})
 			.catch((err) => {
 				console.log('error deleting pokemon');
@@ -50,7 +52,7 @@ function App() {
 			.then((res) => {
 				let pokemon = pokeObj(res.data);
 				axios
-					.post(`${pokemonUrl}pokemon/`, pokemon)
+					.post(`/pokemon/`, pokemon)
 					.then((res) => {
 						console.log('added pokemon successfully');
 						setPokemons(pokemons.push(pokemon));
