@@ -27,6 +27,20 @@ function App() {
 			});
 	};
 
+	const deletePokemon = () => {
+		let id = pokemons[index].no;
+		axios
+			.delete(`http://localhost:3001/pokemon/${id}`)
+			.then((res) => {
+				console.log(`deleted pokemon # ${id}`);
+				setPokemons(pokemons.splice(id, 1));
+				// setIndex(index - 1);
+			})
+			.catch((err) => {
+				console.log('error deleting pokemon');
+			});
+	};
+
 	const onClick = (direction) => {
 		if (direction === 'next') {
 			if (index === pokemons.length - 1) {
@@ -46,6 +60,7 @@ function App() {
 	return (
 		<div className="App">
 			<Button>Add</Button>
+			<Button onClick={deletePokemon}>Delete</Button>
 			<Front pokemons={pokemons} index={index} />
 			<Back pokemons={pokemons} index={index} />
 			<Button onClick={() => onClick('back')}>Back</Button>
