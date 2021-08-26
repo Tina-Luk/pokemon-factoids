@@ -9,3 +9,7 @@
 	align-items: center;
 	justify-content: center;
 }
+
+.back-next-container {
+	padding: 50px;
+}

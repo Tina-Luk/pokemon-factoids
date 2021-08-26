@@ -4,7 +4,7 @@ import { Button, Input } from 'semantic-ui-react';
 import axios from 'axios';
 import Front from './Front';
 import Back from './Back';
-import pokeObj from './pokemonAPIhelper';
+import pokeObj from '../helpers/pokemonAPIhelper';
 
 // const pokemonUrl = 'http://localhost:3001/';
 
@@ -96,16 +96,22 @@ function App() {
 			<h1>POKEMON FACTOIDS</h1>
 			<div>
 				<p>Enter Pokemon Name or Number: </p>
-				<Input placeholder="bulbasaur" onChange={(e) => setAdd(e.target.value)} />
+				<Input placeholder="bulbasaur or 1" onChange={(e) => setAdd(e.target.value)} />
 				<Button onClick={onAddClick}>Add</Button>
 			</div>
-			<br />
-			<div>
-				<Button onClick={deletePokemon}>Delete Pokemon from Pokedex</Button>
+
+			{!infoDisplayed ? (
+				<Front pokemons={pokemons} index={index} onClick={showBack} />
+			) : (
+				<div>
+					<Back pokemons={pokemons} index={index} onClick={showBack} />
+					<Button onClick={deletePokemon}>Delete {pokemons.length > 0 ? pokemons[index].name.toUpperCase() : ''} from Pokedex</Button>
+				</div>
+			)}
+			<div className="back-next-container">
+				<Button onClick={() => onClick('back')}>Back</Button>
+				<Button onClick={() => onClick('next')}>Next</Button>
 			</div>
-			{!infoDisplayed ? <Front pokemons={pokemons} index={index} onClick={showBack} /> : <Back pokemons={pokemons} index={index} onClick={showBack} />}
-			<Button onClick={() => onClick('back')}>Back</Button>
-			<Button onClick={() => onClick('next')}>Next</Button>
 		</div>
 	);
 }
