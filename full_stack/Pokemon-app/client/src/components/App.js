@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Front from './Front';
+import Back from './Back';
 
 const pokemonUrl = 'http://localhost:3001/';
 
@@ -29,6 +30,7 @@ function App() {
 	return (
 		<div className="App">
 			<Front pokemons={pokemons} index={index} />
+			<Back pokemons={pokemons} index={index} />
 		</div>
 	);
 }
