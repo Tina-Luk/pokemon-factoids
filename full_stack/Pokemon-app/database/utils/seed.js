@@ -31,7 +31,7 @@ Promise.all(promises)
 	.then((res) => {
 		for (let i = 0; i < res.length; i++) {
 			let pokeData = {
-				no: res[i].data.order,
+				no: res[i].data.id,
 				name: res[i].data.species.name,
 				abilities: abilities(res[i].data.abilities),
 				type: type(res[i].data.types),

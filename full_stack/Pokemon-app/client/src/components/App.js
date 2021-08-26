@@ -4,6 +4,7 @@ import { Button, Input } from 'semantic-ui-react';
 import axios from 'axios';
 import Front from './Front';
 import Back from './Back';
+import pokeObj from './pokemonAPIhelper';
 
 const pokemonUrl = 'http://localhost:3001/';
 
@@ -43,18 +44,18 @@ function App() {
 	};
 
 	const onAddClick = () => {
+		console.log(pokemons);
 		axios
-			.get(`https://pokeapi.co/api/v2/pokemon/1`)
-			.then((res) => console.log(res.data))
+			.get(`https://pokeapi.co/api/v2/pokemon/${add}`)
+			.then((res) => {
+				let pokemon = pokeObj(res.data);
+				setPokemons(pokemons.push(pokemon));
+				axios
+					.post(`${pokemonUrl}pokemon/`, pokemon)
+					.then((res) => console.log('added pokemon successfully'))
+					.catch((err) => console.log(err));
+			})
 			.catch((err) => console.log(err));
-		// axios
-		// 	.post(`${pokemonUrl}pokemon`, add)
-		// 	.then((res) => {
-		// 		console.log(`added pokemon # ${add}`);
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log('error adding pokemon');
-		// 	});
 	};
 
 	const onClick = (direction) => {
@@ -72,7 +73,7 @@ function App() {
 			}
 		}
 	};
-	console.log(add);
+
 	return (
 		<div className="App">
 			<h1>POKEMON FACTOIDS</h1>
