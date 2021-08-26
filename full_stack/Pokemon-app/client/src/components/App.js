@@ -49,11 +49,11 @@ function App() {
 			.get(`https://pokeapi.co/api/v2/pokemon/${add}`)
 			.then((res) => {
 				let pokemon = pokeObj(res.data);
-				setPokemons(pokemons.push(pokemon));
 				axios
 					.post(`${pokemonUrl}pokemon/`, pokemon)
 					.then((res) => {
 						console.log('added pokemon successfully');
+						setPokemons(pokemons.push(pokemon));
 						setIndex(pokemons.length - 1);
 					})
 					.catch((err) => console.log(err));
@@ -62,6 +62,7 @@ function App() {
 	};
 
 	const onClick = (direction) => {
+		console.log('clicked');
 		if (direction === 'next') {
 			if (index === pokemons.length - 1) {
 				setIndex(0);
@@ -75,11 +76,11 @@ function App() {
 				setIndex(index - 1);
 			}
 		}
+		setInfoDisplayed(false);
 	};
 
 	const showBack = () => {
 		setInfoDisplayed(!infoDisplayed);
-		console.log(infoDisplayed);
 	};
 
 	return (

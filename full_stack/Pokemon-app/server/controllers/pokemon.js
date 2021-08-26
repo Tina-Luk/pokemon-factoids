@@ -12,14 +12,19 @@ exports.getAll = (req, res) => {
 };
 
 exports.add = (req, res) => {
-	const newPokemon = new Pokemon(req.body);
-	// add method to see if pokemon exists or not before adding
-	newPokemon.save((err, data) => {
-		if (err) {
-			console.log(err);
-			res.status(404).send(`err adding ${req.body.name}`);
+	Pokemon.findOne({ no: req.body.no }, (err, data) => {
+		if (data === null) {
+			const newPokemon = new Pokemon(req.body);
+			newPokemon.save((err, data) => {
+				if (err) {
+					console.log(err);
+					res.status(404).send(`err adding ${req.body.name}`);
+				} else {
+					res.status(200).send(data);
+				}
+			});
 		} else {
-			res.status(200).send(data);
+			res.status(404).send('Pokemon exists already - delete first');
 		}
 	});
 };
