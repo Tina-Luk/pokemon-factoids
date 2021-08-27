@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const db = require('../database');
 const controller = require('../server/controllers/pokemon.js');
+const seed = require('../database/utils/seed.js');
 
 const app = express();
 const PORT = process.env.PORT || 3001;

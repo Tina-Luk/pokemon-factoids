@@ -1,6 +1,7 @@
 const connection = require('./dropCollection.js');
 const axios = require('axios');
-const envURL = 'http://localhost:3001/';
+const PORT = process.env.PORT || 3001;
+const envURL = `http://localhost:${PORT}/`;
 const pokemonSeed = [];
 const promises = [];
 
@@ -46,10 +47,7 @@ Promise.all(promises)
 			axios
 				.post(`${envURL}pokemon/`, seed[i])
 				.then((res) => console.log(res.status, res.data))
-				.catch((err) => console.log(`error getting pokemon data from number ${i}`));
+				.catch((err) => console.log(err.message, `error getting pokemon data from number ${i}`));
 		}
-	})
-	.then(() => {
-		connection.close();
 	})
 	.catch((err) => console.log(err));
