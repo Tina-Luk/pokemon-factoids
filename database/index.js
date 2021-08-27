@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const config = require('./atlasConfig');
 
-const mongoURI = 'mongodb://localhost:27017/pokemon-test';
+const mongoURI = `mongodb+srv://${config.username}:${config.password}@${config.cluster}/pokemons?retryWrites=true&w=majority`;
 
 const db = mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
