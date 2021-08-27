@@ -1,6 +1,6 @@
 const config = {
 	username: 'tina',
-	password: 'bcG7WsCFb65fJU7P',
+	password: '6BlzeQV2yNYLO5Cy',
 	cluster: 'pokemon-codetest',
 };
 
