@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/pokemon-test', {
+const config = mongoose.connect(`mongodb+srv://tina:${config.password}@pokemon-codetest.m5rji.mongodb.net/pokemons?retryWrites=true&w=majority`, {
 	useNewUrlParser: true,
 });
 const connection = mongoose.connection;
