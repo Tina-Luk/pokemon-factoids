@@ -3,6 +3,8 @@ const config = require('./atlasConfig');
 
 mongoose.connect(`mongodb+srv://tina:${config.password}@pokemon-codetest.m5rji.mongodb.net/pokemons?retryWrites=true&w=majority`, {
 	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	tlsAllowInvalidCertificates: true,
 });
 const connection = mongoose.connection;
 

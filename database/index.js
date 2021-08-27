@@ -6,6 +6,7 @@ const mongoURI = `mongodb+srv://tina:${config.password}@pokemon-codetest.m5rji.m
 const db = mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+	tlsAllowInvalidCertificates: true,
 });
 
 db.then((db) => console.log(`Connected to: ${mongoURI}`)).catch((err) => {
