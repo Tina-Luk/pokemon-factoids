@@ -1,4 +1,4 @@
 const config = {
-	password: 'ADD ATLAS USER PASSWORD',
+	password: '6BlzeQV2yNYLO5Cy',
 };
 module.exports = config;
