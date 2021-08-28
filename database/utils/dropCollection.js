@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const config = require('./atlasConfig');
+const mongoURI = `mongodb+srv://tina:${config.password}@pokemon-codetest.m5rji.mongodb.net/pokemons?retryWrites=true&w=majority`;
 
-mongoose.connect(`mongodb+srv://tina:${config.password}@pokemon-codetest.m5rji.mongodb.net/pokemons?retryWrites=true&w=majority`, {
+mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	tlsAllowInvalidCertificates: true,
