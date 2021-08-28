@@ -10,6 +10,7 @@ function Front({ pokemons, index, onClick }) {
 			<Message onClick={onClick}>
 				<h4>Guess this Pokemon?!</h4>
 				<Image src={imageUrl} wrapped ui={false} />
+				<p>Tap the card for the answer.</p>
 			</Message>
 		</div>
 	);

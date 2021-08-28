@@ -6,8 +6,6 @@ import Front from './Front';
 import Back from './Back';
 import pokeObj from '../helpers/pokemonAPIhelper';
 
-// const pokemonUrl = 'http://localhost:3001/';
-
 function App() {
 	const [pokemons, setPokemons] = useState([]);
 	const [index, setIndex] = useState(0);
@@ -99,12 +97,10 @@ function App() {
 	return (
 		<div className="App">
 			<h1>POKEMON FACTOIDS</h1>
-			<div>
-				<p>Enter Pokemon Name or Number: </p>
-				<Input placeholder="bulbasaur or 1" onChange={(e) => setAdd(e.target.value)} />
-				<Button onClick={onAddClick}>Add</Button>
+			<div className="back-next-container">
+				<Button onClick={() => onClick('back')}>Back</Button>
+				<Button onClick={() => onClick('next')}>Next</Button>
 			</div>
-
 			{!infoDisplayed ? (
 				<Front pokemons={pokemons} index={index} onClick={showBack} />
 			) : (
@@ -114,8 +110,9 @@ function App() {
 				</div>
 			)}
 			<div className="back-next-container">
-				<Button onClick={() => onClick('back')}>Back</Button>
-				<Button onClick={() => onClick('next')}>Next</Button>
+				<p>Add Pokemon Name or Number: </p>
+				<Input placeholder="bulbasaur or 1" onChange={(e) => setAdd(e.target.value)} />
+				<Button onClick={onAddClick}>Add</Button>
 			</div>
 		</div>
 	);
