@@ -1,4 +1,4 @@
 node_modules
 package-lock.json
 
-/database/utils/atlasConfig.js
+./database/utils/atlasConfig.js

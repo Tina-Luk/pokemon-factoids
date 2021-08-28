@@ -35,6 +35,13 @@ Update /client/package.json proxy: "http://localhost:3001/"
 npm run build
 ```
 
+From root folder:
+
+```
+npm run seed-db
+npm start
+```
+
 Run app on "http://localhost:3001"
 
 # Welcome
