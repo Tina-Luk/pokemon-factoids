@@ -24,7 +24,7 @@ exports.add = (req, res) => {
 				}
 			});
 		} else {
-			res.status(404).send('Pokemon exists already - delete first');
+			res.status(400).send('Pokemon exists already - delete first');
 		}
 	});
 };
